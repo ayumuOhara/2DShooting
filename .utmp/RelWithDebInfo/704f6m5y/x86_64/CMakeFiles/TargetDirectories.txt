@@ -1,0 +1,5 @@
+C:/unity/2Dshooting/.utmp/RelWithDebInfo/704f6m5y/x86_64/CMakeFiles/edit_cache.dir
+C:/unity/2Dshooting/.utmp/RelWithDebInfo/704f6m5y/x86_64/CMakeFiles/rebuild_cache.dir
+C:/unity/2Dshooting/.utmp/RelWithDebInfo/704f6m5y/x86_64/FramePacing/CMakeFiles/swappywrapper.dir
+C:/unity/2Dshooting/.utmp/RelWithDebInfo/704f6m5y/x86_64/FramePacing/CMakeFiles/edit_cache.dir
+C:/unity/2Dshooting/.utmp/RelWithDebInfo/704f6m5y/x86_64/FramePacing/CMakeFiles/rebuild_cache.dir

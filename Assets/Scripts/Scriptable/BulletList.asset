@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9beac4cd1c060a64aa7e2f00fdb17407, type: 3}
+  m_Name: BulletList
+  m_EditorClassIdentifier: 
+  _bulletData:
+  - _bulletName: BulletN
+    _pow: 1
+    _speed: 10
+    _through: 0
+    _homing: 0
+    _drain: 0
+  - _bulletName: Drain
+    _pow: 1.5
+    _speed: 8
+    _through: 0
+    _homing: 0
+    _drain: 1
+  - _bulletName: Cross
+    _pow: 1
+    _speed: 10
+    _through: 0
+    _homing: 1
+    _drain: 0
+  - _bulletName: Pulse
+    _pow: -0.5
+    _speed: 10
+    _through: 1
+    _homing: 0
+    _drain: 0
+  - _bulletName: Wave
+    _pow: 0
+    _speed: 100
+    _through: 0
+    _homing: 0
+    _drain: 0
