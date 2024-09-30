@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class EnemyGenerator : MonoBehaviour
 {
+    AudioManager _audio;
+    GameManager _gameManager;
+
     [SerializeField] Transform enemySpawn;
     [SerializeField] List<SplineContainer> allSplines; // すべてのスプラインを保持するリスト
 
     private List<SplineContainer> availableSplines; // 現在使用可能なスプラインのリスト
     [SerializeField] SplineContainer BossRoute;
-    public float wave;
-    public float wavePercent;
+    public float wave;              // ウェーブ数
+    public float defeatedEnemyCnt;  // 倒した敵の数
+    public float waveMaxPer;        // ウェーブ事の倒す敵の目標数
     
     // ウェーブごとの敵設定と確率
     [SerializeField] List<GameObject> wave1Enemies;
@@ -24,32 +29,40 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] List<float> wave3Probabilities; // 各敵の出現確率
 
     [SerializeField] GameObject Boss;
-    bool isBoss = false;
+    public bool isBoss = false;
 
     private float activeEnemyCount = 0; // 現在のアクティブな敵の数
-    private const float maxEnemies = 4; // 最大のアクティブな敵の数
+    private float maxEnemies = 4; // 最大のアクティブな敵の数
+    private float spawnSpan = 0;
 
     void Start()
     {
         isBoss = false;
         wave = 1;
-        wavePercent = 0;
+        defeatedEnemyCnt = 0;
+        spawnSpan = 5.0f;
+        _audio = GameObject.Find("Speaker").GetComponent<AudioManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         availableSplines = new List<SplineContainer>(allSplines); // 初期化
+        _gameManager.FadeAnimation(wave);
         StartCoroutine(WaveGene());
     }
 
     private void Update()
     {
-        if (wavePercent >= 100 && wave < 3)
+        activeEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if(defeatedEnemyCnt >= waveMaxPer && wave <= 3)
         {
+            defeatedEnemyCnt = 0;
             wave++;
-            wavePercent = 0;
+            _gameManager.FadeAnimation(wave);
         }
-
         // ボス出現時
-        if(wave == 3 && wavePercent >= 100 && isBoss == false)
+        if(wave > 3 && isBoss == false)
         {
             isBoss = true;
+            _audio.PlayBGM("BOSS");
+            _audio.PlayBGM("InGameStop");
             GameObject spawnedEnemy = Instantiate(Boss, enemySpawn.position, Quaternion.identity);
             SplineAnimate splineAnimate = spawnedEnemy.GetComponent<SplineAnimate>();
             if (splineAnimate != null)
@@ -68,7 +81,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         while (true)
         {
-            if(wave >= 3 && wavePercent >= 100)
+            if(wave > 3)
             {
                 StopCoroutine(WaveGene());
                 yield break;
@@ -79,16 +92,22 @@ public class EnemyGenerator : MonoBehaviour
             switch (wave)
             {
                 case 1:
+                    waveMaxPer = 15.0f;
                     SpawnEnemies(wave1Enemies, wave1Probabilities); break;
                 case 2:
+                    waveMaxPer = 40.0f;
+                    maxEnemies = 6;
+                    spawnSpan = 3.5f;
                     SpawnEnemies(wave2Enemies, wave2Probabilities); break;
                 case 3:
+                    waveMaxPer = 65.0f;
+                    maxEnemies = 8;
+                    spawnSpan = 2.5f;
                     SpawnEnemies(wave3Enemies, wave3Probabilities); break;
                 default:
-                    Debug.Log("No settings available for this wave.");
                     break;
             }
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(spawnSpan);
         }
     }
 
@@ -107,12 +126,11 @@ public class EnemyGenerator : MonoBehaviour
             return;
         }
 
-        int rndSpawn = Random.Range(1, 4);
+        int rndSpawn = Random.Range(2, 4);
         float enemiesToSpawn = Mathf.Min(rndSpawn, maxEnemies - activeEnemyCount); // 出現する敵の数を制限
 
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            EnemyCntUp(1); // アクティブな敵の数を増やす
             if (enemySet == null || enemySet.Count == 0)
             {
                 Debug.LogError("敵のセットが無効です。");
@@ -180,18 +198,8 @@ public class EnemyGenerator : MonoBehaviour
         return enemySet[enemySet.Count - 1]; // 万が一抽選できなかった場合、最後の敵を返す
     }
 
-    public void OnEnemyDestroyed(float cnt)
+    public void WavePerAdd(float per)
     {
-        activeEnemyCount = Mathf.Clamp(activeEnemyCount - cnt, 0, maxEnemies);
-    }
-
-    void EnemyCntUp(float cnt)
-    {
-        activeEnemyCount = Mathf.Clamp(activeEnemyCount + cnt, 0, maxEnemies);
-    }
-
-    public void WavePerAdd(float wavePer)
-    {
-        wavePercent = Mathf.Clamp(wavePercent + wavePer, 0, 100.0f);
+        defeatedEnemyCnt = Mathf.Clamp(defeatedEnemyCnt + per, 0, waveMaxPer);
     }
 }

@@ -189,6 +189,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1988e8f1bf87e9d40b18e1634cbb03ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _getCoin: {fileID: 3191546519741092727, guid: 4da960f442edb6540856b2b5ccbaca6b, type: 3}
-  _getEnergyItem: {fileID: 3191546519741092727, guid: 55dc660bd0ae130469bcdd457e043e57, type: 3}
-  _getPowItem: {fileID: 4758764993548453428, guid: 5a7dd08aecd525d41a5aa6b961392aee, type: 3}
+  _animator: {fileID: 3740526438533966762}

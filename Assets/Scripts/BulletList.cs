@@ -8,6 +8,9 @@ public class BulletData
     public string _bulletName;
     public float _pow;
     public float _speed;
+    public bool _through;
+    public bool _homing;
+    public bool _drain;
 }
 
 [CreateAssetMenu(fileName = "BulletList", menuName = "Scriptable Object/BulletList")]

@@ -23,6 +23,8 @@ public class EnemyBullets : MonoBehaviour
     string bulletType;  // 弾の種類
     Vector3 _playerPos;
     private Vector3 _targetDirection; // 弾が進む方向
+    [SerializeField]
+    GameObject _HitEffect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +32,7 @@ public class EnemyBullets : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _bulletStatus = new EnemyBulletStatus();
         _bulletStatus.SetStatus();
-        bulletType = this.gameObject.tag;
+        bulletType = this.gameObject.name;
         if(GameObject.Find("Player"))
         _playerPos = GameObject.Find("Player").transform.position;
     }
@@ -40,12 +42,12 @@ public class EnemyBullets : MonoBehaviour
     {
         switch (bulletType)
         {
-            case "Bullet1":
-            case "Bullet2":
-            case "Bullet3":
+            case "Bullet1(Clone)":
+            case "Bullet2(Clone)":
+            case "Bullet3(Clone)":
                 BulletMove(5.0f);
                 break;
-            case "Bullet4":
+            case "Bullet4(Clone)":
                 RockOnBullet(4.0f);
                 break;
         }
@@ -75,6 +77,7 @@ public class EnemyBullets : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            Instantiate(_HitEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
             _player = collision.gameObject.GetComponent<PlayerController>();
             Destroy(gameObject);
             // 敵のパワーからダメージを受ける処理を実行

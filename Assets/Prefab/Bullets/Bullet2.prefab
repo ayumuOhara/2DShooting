@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6428393052961032776}
   - component: {fileID: 4045410140302660624}
   - component: {fileID: 3962626214133719312}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Bullet2
-  m_TagString: Bullet2
+  m_TagString: BulletEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +139,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 0}
+  _HitEffect: {fileID: 1366410141107633185, guid: c5b2881ec4ed1a34092ced80c1182c83, type: 3}

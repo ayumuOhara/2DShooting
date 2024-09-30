@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6187577618446755101}
   - component: {fileID: 1912020965031378187}
   - component: {fileID: 6322486753003220499}
+  - component: {fileID: -4263831856279871323}
   - component: {fileID: 7132036808987293478}
   - component: {fileID: -3316813097961551417}
   - component: {fileID: -1291350348400866415}
-  - component: {fileID: -4263831856279871323}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -128,6 +128,33 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.375
+--- !u!50 &-4263831856279871323
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50278878749115577}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &7132036808987293478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStatus: {fileID: 11400000, guid: 82a57c7a44937644abdf3bc66195e5dc, type: 2}
+  _animator: {fileID: -3316813097961551417}
   _defeatEff: {fileID: 6442108569644465119, guid: cb1eecc15d6faf440ac5d995713be918, type: 3}
   EnemyBullet:
   - {fileID: 571927829577412137, guid: 41bc5f0c58bcfc648a0e8631021334c5, type: 3}
@@ -196,30 +224,3 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
---- !u!50 &-4263831856279871323
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50278878749115577}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4

@@ -5,8 +5,10 @@ public class AudioManager : MonoBehaviour
 {
     AudioSource audioSource;
     [SerializeField]
-    List<AudioClip> soundList;
+    List<AudioClip> SeList;
     AudioClip sound;
+    [SerializeField]
+    List<AudioSource> BGMList;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,24 +27,47 @@ public class AudioManager : MonoBehaviour
         switch (soundName)
         {
             case "EnemyDefeat":
-                sound = soundList[3];
+                sound = SeList[0];
                 audioSource.PlayOneShot(sound);
                 break;
             case "PlayerDamage":
-                sound = soundList[1];
+                sound = SeList[1];
                 audioSource.PlayOneShot(sound);
                 break;
             case "PlayerDefeat":
-                sound = soundList[0];
+                sound = SeList[2];
                 audioSource.PlayOneShot(sound);
                 break;
-            case "PlayerBullet":
-                sound = soundList[2];
+            case "EnemyDamage":
+                sound = SeList[3];
                 audioSource.PlayOneShot(sound);
                 break;
             case "CoinGet":
-                sound = soundList[4];
+                sound = SeList[4];
                 audioSource.PlayOneShot(sound);
+                break;
+            case "ItemGet":
+                sound = SeList[5];
+                audioSource.PlayOneShot(sound);
+                break;
+        }
+    }
+
+    public void PlayBGM(string BGMName)
+    {
+        switch (BGMName)
+        {
+            case "InGame":
+                BGMList[0].Play();
+                break;
+            case "BOSS":
+                BGMList[1].Play();
+                break;
+            case "InGameStop":
+                BGMList[0].Stop();
+                break;
+            case "BOSSStop":
+                BGMList[1].Stop();
                 break;
         }
     }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.ComponentModel;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour
@@ -8,6 +7,7 @@ public class ItemController : MonoBehaviour
     AudioManager _audio;
     private string itemType;
     float _deletTime;
+    [SerializeField] private Animator _animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +18,7 @@ public class ItemController : MonoBehaviour
             GameObject player = GameObject.Find("Player");
             _player = player.GetComponent<PlayerController>();
         }
-        _audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        _audio = GameObject.Find("Speaker").GetComponent<AudioManager>();
         itemType = this.gameObject.tag;
         StartCoroutine(DeleteItem());
     }
@@ -26,7 +26,7 @@ public class ItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.Translate(new Vector3(0, -0.6f * Time.deltaTime, 0));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,23 +42,25 @@ public class ItemController : MonoBehaviour
                         _player._status._coin++;
                     }
                     break;
-                case "EnergyItem":
-                    if(_player._status._energy < _player._status._maxEnergy)
-                    {
-                        _player._status._energy++;
-                    }
+                case "BonusItem":
+                    _audio.PlaySound("ItemGet");
+                    _player._status.GetBonusHP(1);
                     break;
                 case "PowerItem":
+                    _audio.PlaySound("ItemGet");
                     _player._status.LvUp(1);
                     break;
             }
+            _player.StatusAdd();
             Destroy(gameObject);
         }
     }
 
     IEnumerator DeleteItem()
     {
-        yield return new WaitForSeconds(_deletTime);
+        yield return new WaitForSeconds(_deletTime - 3);
+        _animator.SetTrigger("Delete");
+        yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
 }

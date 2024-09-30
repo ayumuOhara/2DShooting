@@ -4,20 +4,11 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - BulletN
-  - BulletSP
-  - Bullet1
-  - Bullet2
-  - Bullet3
-  - Bullet4
-  - EnemyS
-  - EnemyM
-  - EnemyL
-  - EnemyE
-  - Boss
+  - Enemy
   - PowerItem
-  - EnergyItem
   - Coin
+  - BonusItem
+  - BulletEnemy
   layers:
   - Default
   - TransparentFX
