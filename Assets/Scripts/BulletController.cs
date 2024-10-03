@@ -156,7 +156,7 @@ public class BulletController : MonoBehaviour
                 _enemy.ApplyDamage(damage);  // “G‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
                 if (_bulletStatus._drain)
                 {
-                    _player._status.DrainHP(damage * 0.1f);
+                    _player._status.DrainHP(damage * 0.2f);
                 }
                 break;
         }

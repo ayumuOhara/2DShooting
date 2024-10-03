@@ -156,7 +156,6 @@ public class EnemyController : MonoBehaviour
     public void ApplyDamage(float damage)
     {
         _audio.PlaySound("EnemyDamage");
-        if(enemy._name == "Boss") _animator.SetTrigger("Damage");
         _status.TakeDamage(damage);
         if (_status.IsDead())
         {

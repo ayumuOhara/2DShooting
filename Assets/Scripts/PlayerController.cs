@@ -215,15 +215,15 @@ public class PlayerController : MonoBehaviour
                 break;
             case 5:
                 _bullet = Bullets[2];   // ƒz[ƒ~ƒ“ƒO’e
-                _status._rate = 0.25f;
+                _status._rate = 0.2f;
                 break;
             case 6:
                 _bullet = Bullets[3];   // ŠÑ’Ê’e
-                _status._rate = 0.15f;
+                _status._rate = 0.2f;
                 break;
             case 7:
                 _bullet = Bullets[4];   // ’´‚‘¬’e
-                _status._rate = 0.06f;
+                _status._rate = 0.08f;
                 break;
         }
     }

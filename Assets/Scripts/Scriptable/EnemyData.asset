@@ -21,20 +21,20 @@ MonoBehaviour:
   - _name: EnemyM
     _hp: 20
     _pow: 2
-    _rate: 3
+    _rate: 2
     _speed: 1
   - _name: EnemyL
     _hp: 30
     _pow: 2
-    _rate: 3
+    _rate: 2
     _speed: 1.5
   - _name: EnemyE
     _hp: 4
     _pow: 1
-    _rate: 3
+    _rate: 2
     _speed: 0.5
   - _name: Boss
-    _hp: 800
+    _hp: 750
     _pow: 3
     _rate: 2
-    _speed: 1
+    _speed: 0

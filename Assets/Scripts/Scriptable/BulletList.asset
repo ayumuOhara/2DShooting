@@ -26,7 +26,7 @@ MonoBehaviour:
     _homing: 0
     _drain: 1
   - _bulletName: Cross
-    _pow: 1
+    _pow: 0
     _speed: 10
     _through: 0
     _homing: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     _homing: 0
     _drain: 0
   - _bulletName: Wave
-    _pow: 0
+    _pow: -0.3
     _speed: 100
     _through: 0
     _homing: 0
